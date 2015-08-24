@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initViews() {
+        initButtons();
+        chronometer = (Chronometer) findViewById(R.id.chronometer);
+        initLapsRecylerView();
+    }
+
+    private void initButtons() {
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
 
@@ -35,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         markButton = (Button) findViewById(R.id.markButton);
         markButton.setOnClickListener(this);
+    }
 
-        chronometer = (Chronometer) findViewById(R.id.chronometer);
-
+    private void initLapsRecylerView() {
         lapsRecyclerView = (RecyclerView) findViewById(R.id.lapsRecyclerView);
         lapsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         lapsAdapter = new LapsAdapter();
@@ -62,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void addEllipsedTimeToLaps() {
         long ellipsedMilliSeconds =  SystemClock.elapsedRealtime() - chronometer.getBase();
-        lapsAdapter.addLap(ellipsedMilliSeconds);
+        lapsAdapter.addLap(TimeFormatter.format(ellipsedMilliSeconds));
         lapsAdapter.notifyDataSetChanged();
     }
 }

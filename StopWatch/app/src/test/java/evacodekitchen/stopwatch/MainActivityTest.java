@@ -5,6 +5,10 @@ import android.os.SystemClock;
 import android.widget.Button;
 import android.widget.Chronometer;
 
+import org.assertj.core.api.Assertions;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -18,6 +22,8 @@ import org.robolectric.internal.Shadow;
 import org.robolectric.shadows.ShadowSystemClock;
 
 import static org.assertj.android.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -104,7 +110,7 @@ public class MainActivityTest {
         activityUnderTest.markButton.performClick();
 
         //then
-        verify(activityUnderTest.lapsAdapter).addLap(3000);
+        verify(activityUnderTest.lapsAdapter).addLap("00:03");
         verify(activityUnderTest.lapsAdapter).notifyDataSetChanged();
     }
 

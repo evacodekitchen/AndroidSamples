@@ -27,7 +27,7 @@ public class LapsAdapterTest {
         assertThat(lapsAdapter.laps.size(), is(0));
 
         //when
-        lapsAdapter.addLap(2);
+        lapsAdapter.addLap("00:00:02");
 
         //then
         assertThat(lapsAdapter.laps.size(), is(1));
@@ -39,7 +39,7 @@ public class LapsAdapterTest {
         LapsAdapter lapsAdapter = new LapsAdapter();
 
         //when
-        lapsAdapter.addLap(66);
+        lapsAdapter.addLap("10:00:02");
 
         TextView textViewMock = Mockito.mock(TextView.class);
         View viewItemMock = Mockito.mock(View.class);
@@ -47,7 +47,7 @@ public class LapsAdapterTest {
         lapsAdapter.onBindViewHolder(new LapsAdapter.LapViewHolder(viewItemMock), 0); //invoked normally by the layout manager
 
         //then
-        verify(textViewMock).setText("66");
+        verify(textViewMock).setText("10:00:02");
     }
 
     @Test
@@ -55,9 +55,9 @@ public class LapsAdapterTest {
         //given
         LapsAdapter lapsAdapter = new LapsAdapter();
 
-        lapsAdapter.addLap(66);
-        lapsAdapter.addLap(77);
-        lapsAdapter.addLap(45);
+        lapsAdapter.addLap("00:00:13");
+        lapsAdapter.addLap("00:00:15");
+        lapsAdapter.addLap("00:00:42");
 
         //when
         int lapsCount = lapsAdapter.getItemCount();

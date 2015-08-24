@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LapsAdapter extends RecyclerView.Adapter<LapsAdapter.LapViewHolder> {
 
-    protected List<Long> laps;
+    protected List<String> laps;
 
     public LapsAdapter() {
         laps = new ArrayList<>();
@@ -27,7 +27,7 @@ public class LapsAdapter extends RecyclerView.Adapter<LapsAdapter.LapViewHolder>
 
     @Override
     public void onBindViewHolder(LapViewHolder viewHolder, int i) {
-        viewHolder.ellipsedTimeTextview.setText(laps.get(i).toString());
+        viewHolder.ellipsedTimeTextview.setText(laps.get(i));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LapsAdapter extends RecyclerView.Adapter<LapsAdapter.LapViewHolder>
         return laps.size();
     }
 
-    public void addLap(long ellipsedTime) {
+    public void addLap(String ellipsedTime) {
         laps.add(ellipsedTime);
     }
 
