@@ -1,6 +1,7 @@
 package evacodekitchen.stopwatch;
 
 import android.os.SystemClock;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected Chronometer chronometer;
     protected Button startButton;
     protected Button resetButton;
-    protected Button markButton;
+    protected FloatingActionButton markButton;
     protected RecyclerView lapsRecyclerView;
     protected LapsAdapter lapsAdapter;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resetButton = (Button) findViewById(R.id.resetButton);
         resetButton.setOnClickListener(this);
 
-        markButton = (Button) findViewById(R.id.markButton);
+        markButton = (FloatingActionButton) findViewById(R.id.markButton);
         markButton.setOnClickListener(this);
     }
 
@@ -61,14 +62,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 chronometer.setBase(SystemClock.elapsedRealtime());
                 break;
             case R.id.markButton:
-                addEllipsedTimeToLaps();
+                addElapsedTimeToLaps();
                 break;
         }
     }
 
-    private void addEllipsedTimeToLaps() {
-        long ellipsedMilliSeconds =  SystemClock.elapsedRealtime() - chronometer.getBase();
-        lapsAdapter.addLap(TimeFormatter.format(ellipsedMilliSeconds));
+    private void addElapsedTimeToLaps() {
+        long elapsedMilliSeconds =  SystemClock.elapsedRealtime() - chronometer.getBase();
+        lapsAdapter.addLap(TimeFormatter.format(elapsedMilliSeconds));
         lapsAdapter.notifyDataSetChanged();
     }
 }

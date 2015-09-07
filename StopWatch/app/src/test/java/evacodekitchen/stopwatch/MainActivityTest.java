@@ -60,7 +60,8 @@ public class MainActivityTest {
 
     @Test
     public void markButton_shouldBeOnScreen() {
-        checkButtonWithText(activityUnderTest.markButton, R.string.mark);
+        assertThat(activityUnderTest.markButton).isNotNull();
+        assertThat(activityUnderTest.markButton).isVisible();
     }
 
 
@@ -98,7 +99,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void ellipsedTime_ShouldBePassedToAdapter() {
+    public void elapsedTime_ShouldBePassedToAdapter() {
         //given
         Chronometer chronometerMock = mock(Chronometer.class);
         when(chronometerMock.getBase()).thenReturn(SystemClock.elapsedRealtime() - 3000);
